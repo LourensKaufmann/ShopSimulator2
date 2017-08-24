@@ -10,7 +10,7 @@ public class ShelfEditorHandler : MonoBehaviour {
     List<string> groceryChoices;
     public List<string> shelfselection;
 
-	public void Start () {
+    public void Start () {
         DontDestroyOnLoad(gameObject);
         List<GameObject> dropdownObjects = new List<GameObject>();
  
@@ -24,16 +24,19 @@ public class ShelfEditorHandler : MonoBehaviour {
             // Add all dropdowns in scene to a list for later use.
             dropdowns.Add(dropdownObjects[i].GetComponent<Dropdown>());
         }
-
-        DirectoryInfo dir = new DirectoryInfo("Assets/Resources/Groceries");
-        FileInfo[] info = dir.GetFiles("*.prefab");
+#if UNITY_EDITOR
+        string path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Groceries";
+#else
+        string path = Directory.GetParent(Application.dataPath).FullName + "\\Shared Data\\Groceries";
+#endif
+        string[] info = Directory.GetFiles(path);
         groceryChoices = new List<string>();
         groceryChoices.Add("Empty");
         for (int i = 0; i < info.Length; i++)
         {
-            groceryChoices.Add(info[i].FullName.Split('\\')[info[i].FullName.Split('\\').Length - 1].Split('.')[0]);
+            if(!groceryChoices.Contains(info[i].Split('\\')[info[i].Split('\\').Length - 1].Split('.')[0]))
+            groceryChoices.Add(info[i].Split('\\')[info[i].Split('\\').Length - 1].Split('.')[0]);
         }
-
         for (int i = 0; i < dropdowns.Count; i++)
         {
             // Assign the options for all the shelves.
@@ -55,6 +58,11 @@ public class ShelfEditorHandler : MonoBehaviour {
         {
             shelfselection.Add(groceryChoices[dropdowns[i].value]);
         }
+#if UNITY_EDITOR
+        File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\shelfselection.txt", shelfselection.ToArray());
+#else
+        File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\shelfselection.txt", shelfselection.ToArray());
+#endif
     }
 
     public void EmptyAll()

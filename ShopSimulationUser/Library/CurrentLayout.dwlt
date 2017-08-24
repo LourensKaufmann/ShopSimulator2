@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 163
+  controlID: 81
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 10
+  controlID: 96
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 192}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 164
+  controlID: 82
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -421,9 +421,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -10.821778, y: -5.0625434, z: 41.327805}
+    m_Target: {x: 11.249692, y: -7.0278506, z: 39.361256}
     speed: 2
-    m_Value: {x: -10.821778, y: -5.0625434, z: 41.327805}
+    m_Value: {x: 11.249692, y: -7.0278506, z: 39.361256}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -446,9 +446,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.0835478, y: -0.091635585, z: 0.0077160085, w: 0.9922516}
+    m_Target: {x: -0.104867466, y: -0.16274303, z: 0.017398039, w: -0.9809255}
     speed: 2
-    m_Value: {x: -0.0835478, y: 0.09163559, z: -0.007716009, w: -0.99225163}
+    m_Value: {x: -0.104867466, y: -0.16274303, z: 0.017398039, w: -0.9809255}
   m_Size:
     m_Target: 44.481853
     speed: 2
@@ -519,7 +519,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 1afcffff00000000
+    m_ExpandedIDs: b844ffff0046ffff684cffff9cb3ffff84c4ffff1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -579,18 +579,19 @@ MonoBehaviour:
     m_ScenePaths: []
     m_ShowAllHits: 0
     m_SearchArea: 0
-    m_Folders: []
+    m_Folders:
+    - Assets/Scenes
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Randstad\Documents\ShopSimulatie\ShopSimulationUser
+  m_LastProjectPath: C:\Users\Randstad\Documents\ShopSimulator2\ShopSimulationUser
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 46b30000
     m_LastClickedID: 45894
-    m_ExpandedIDs: 00000000762700008e2800001a2900003e330000aa370000283800007838000086390000a63c0000083d0000586800005a6800005c6800005e68000060680000626800006468000066680000686800006a6800006c6800006e680000706800007268000074680000
+    m_ExpandedIDs: 00000000742700008c280000162900003a330000a637000016380000243800007438000082390000a03c0000023d0000526800005468000056680000586800005a6800005c6800005e68000060680000626800006468000066680000686800006a6800006c6800006e680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -618,7 +619,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000762700008e2800001a2900003e330000aa3700001a380000283800007838000086390000a63c0000083d0000586800005a6800005c6800005e68000060680000626800006468000066680000686800006a6800006c6800006e680000706800007268000074680000
+    m_ExpandedIDs: 00000000742700008c28000016290000462d00003a330000a637000016380000243800007438000082390000a03c0000023d0000526800005468000056680000586800005a6800005c6800005e68000060680000626800006468000066680000686800006a6800006c6800006e680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -12,13 +12,18 @@ public class GroceryTypeSelector : MonoBehaviour {
     {
         try
         {
-            string[] shelfSelection = GameObject.Find("ShelfEditorHandler").GetComponent<ShelfEditorHandler>().shelfselection.ToArray();
+            //string[] shelfSelection = GameObject.Find("ShelfEditorHandler").GetComponent<ShelfEditorHandler>().shelfselection.ToArray();
+#if UNITY_EDITOR
+            string[] shelfSelection = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\shelfselection.txt");
+#else
+            string[] shelfSelection = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\shelfselection.txt");
+#endif
             for (int i = 0; i < shelfSelection.Length; i++)
             {
                 typeArray[i] = Resources.Load("Groceries/" + shelfSelection[i]) as GameObject;
             }
         }
-        catch {/*Empty shelf*/}
+        catch { Debug.Log("Error"); }
     }
 
 }
