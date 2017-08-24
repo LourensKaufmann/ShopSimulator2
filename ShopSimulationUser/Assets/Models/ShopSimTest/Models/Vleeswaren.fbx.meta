@@ -1,0 +1,120 @@
+fileFormatVersion: 2
+guid: 3f1d9ccd87b588b44b3849fcc2c4de7e
+timeCreated: 1503041379
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Tussenwanden
+    100002: Vle_Bord
+    100004: Vle_Glasplaat
+    100006: Vle_Product
+    100008: Vle_Rail
+    100010: Vle_Tussenwand
+    100012: Vle_Werkbank
+    100014: //RootNode
+    400000: Tussenwanden
+    400002: Vle_Bord
+    400004: Vle_Glasplaat
+    400006: Vle_Product
+    400008: Vle_Rail
+    400010: Vle_Tussenwand
+    400012: Vle_Werkbank
+    400014: //RootNode
+    2300000: Tussenwanden
+    2300002: Vle_Bord
+    2300004: Vle_Glasplaat
+    2300006: Vle_Product
+    2300008: Vle_Rail
+    2300010: Vle_Tussenwand
+    2300012: Vle_Werkbank
+    3300000: Tussenwanden
+    3300002: Vle_Bord
+    3300004: Vle_Glasplaat
+    3300006: Vle_Product
+    3300008: Vle_Rail
+    3300010: Vle_Tussenwand
+    3300012: Vle_Werkbank
+    4300000: Vle_Rail
+    4300002: Vle_Glasplaat
+    4300004: Vle_Werkbank
+    4300006: Vle_Tussenwand
+    4300008: Vle_Bord
+    4300010: Vle_Product
+    4300012: Tussenwanden
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

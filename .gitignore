@@ -1,10 +1,10 @@
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/Assets/AssetStoreTools*
-
+ShopSimulation/[Ll]ibrary/
+ShopSimulation/[Tt]emp/
+ShopSimulation/[Oo]bj/
+ShopSimulation/[Bb]uild/
+ShopSimulation/[Bb]uilds/
+ShopSimulation/Assets/AssetStorePackages/
+ShopSimulation/Assets/Extensions/
 # Visual Studio 2015 cache directory
 /.vs/
 
@@ -32,3 +32,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.meta~HEAD
+*.meta~ccbc9e37f31b6c6aee2668fb803e4583fa5e3807

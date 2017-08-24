@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: 3717de22eea5dc0499a103558d958078
+timeCreated: 1503392974
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Kassa_BackBase
+    100004: Kassa_Band
+    100006: Kassa_BandBase
+    100008: Kassa_Base
+    100010: Kassa_Platform
+    100012: Kassa_RubberSides
+    100014: Kassa_Screen
+    100016: Kassa_Screen1
+    100018: Kassa_Screen2
+    100020: Kassa_ScreenGlas
+    100022: pCylinder9
+    400000: //RootNode
+    400002: Kassa_BackBase
+    400004: Kassa_Band
+    400006: Kassa_BandBase
+    400008: Kassa_Base
+    400010: Kassa_Platform
+    400012: Kassa_RubberSides
+    400014: Kassa_Screen
+    400016: Kassa_Screen1
+    400018: Kassa_Screen2
+    400020: Kassa_ScreenGlas
+    400022: pCylinder9
+    2300000: Kassa_BackBase
+    2300002: Kassa_Band
+    2300004: Kassa_BandBase
+    2300006: Kassa_Base
+    2300008: Kassa_Platform
+    2300010: Kassa_RubberSides
+    2300012: Kassa_Screen
+    2300014: Kassa_Screen1
+    2300016: Kassa_Screen2
+    2300018: Kassa_ScreenGlas
+    2300020: pCylinder9
+    3300000: Kassa_BackBase
+    3300002: Kassa_Band
+    3300004: Kassa_BandBase
+    3300006: Kassa_Base
+    3300008: Kassa_Platform
+    3300010: Kassa_RubberSides
+    3300012: Kassa_Screen
+    3300014: Kassa_Screen1
+    3300016: Kassa_Screen2
+    3300018: Kassa_ScreenGlas
+    3300020: pCylinder9
+    4300000: Kassa_Base
+    4300002: Kassa_BandBase
+    4300004: Kassa_Band
+    4300006: Kassa_Platform
+    4300008: Kassa_BackBase
+    4300010: Kassa_RubberSides
+    4300012: pCylinder9
+    4300014: Kassa_ScreenGlas
+    4300016: Kassa_Screen1
+    4300018: Kassa_Screen2
+    4300020: Kassa_Screen
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
