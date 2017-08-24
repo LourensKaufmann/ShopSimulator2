@@ -1,17 +1,17 @@
-ShopSimulation2/ShopSimulationModerator/[Ll]ibrary/
-ShopSimulation2/ShopSimulationModerator/[Tt]emp/
-ShopSimulation2/ShopSimulationModerator/[Oo]bj/
-ShopSimulation2/ShopSimulationModerator/[Bb]uild/
-ShopSimulation2/ShopSimulationModerator/[Bb]uilds/
-ShopSimulation2/ShopSimulationModerator/Assets/AssetStorePackages/
-ShopSimulation2/ShopSimulationModerator/Assets/Extensions/
-ShopSimulation2/ShopSimulationUser/[Ll]ibrary/
-ShopSimulation2/ShopSimulationUser/[Tt]emp/
-ShopSimulation2/ShopSimulationUser/[Oo]bj/
-ShopSimulation2/ShopSimulationUser/[Bb]uild/
-ShopSimulation2/ShopSimulationUser/[Bb]uilds/
-ShopSimulation2/ShopSimulationUser/Assets/AssetStorePackages/
-ShopSimulation2/ShopSimulationUser/Assets/Extensions/
+ShopSimulationModerator/[Ll]ibrary/
+ShopSimulationModerator/[Tt]emp/
+ShopSimulationModerator/[Oo]bj/
+ShopSimulationModerator/[Bb]uild/
+ShopSimulationModerator/[Bb]uilds/
+ShopSimulationModerator/Assets/AssetStorePackages/
+ShopSimulationModerator/Assets/Extensions/
+ShopSimulationUser/[Ll]ibrary/
+ShopSimulationUser/[Tt]emp/
+ShopSimulationUser/[Oo]bj/
+ShopSimulationUser/[Bb]uild/
+ShopSimulationUser/[Bb]uilds/
+ShopSimulationUser/Assets/AssetStorePackages/
+ShopSimulationUser/Assets/Extensions/
 # Visual Studio 2015 cache directory
 /.vs/
 
