@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 81
+  controlID: 10792
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 96
+  controlID: 10696
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 192}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 82
+  controlID: 10844
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -339,7 +339,7 @@ MonoBehaviour:
     y: 573
     width: 980
     height: 445
-  m_MaximizeOnPlay: 0
+  m_MaximizeOnPlay: 1
   m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 07000000000000000000000000000000000000000000000000000000000000000000000001000000
@@ -416,14 +416,14 @@ MonoBehaviour:
     width: 980
     height: 461
   m_SceneLighting: 1
-  lastFramingTime: 147.73199483963558
+  lastFramingTime: 1976.4929545410937
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.66344404, y: -0.3213724, z: -1.6901183}
+    m_Target: {x: 858.6712, y: 806.326, z: -333.76123}
     speed: 2
-    m_Value: {x: -0.66344404, y: -0.3213724, z: -1.6901183}
+    m_Value: {x: 858.6712, y: 806.326, z: -333.76123}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -446,13 +446,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.09126854, y: 0.6728562, z: -0.084208414, w: -0.7292761}
+    m_Target: {x: 0.12857063, y: 0.03240323, z: 0.004202528, w: -0.99116194}
     speed: 2
-    m_Value: {x: -0.09126854, y: 0.6728562, z: -0.084208414, w: -0.7292761}
+    m_Value: {x: 0.12857063, y: 0.03240323, z: 0.004202528, w: -0.991162}
   m_Size:
-    m_Target: 8.819904
+    m_Target: 232.69681
     speed: 2
-    m_Value: 8.819904
+    m_Value: 232.69681
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -519,7 +519,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: f6eaffffd8ebffffdeedffff1afcffff00000000
+    m_ExpandedIDs: 14fcffff1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -579,8 +579,7 @@ MonoBehaviour:
     m_ScenePaths: []
     m_ShowAllHits: 0
     m_SearchArea: 0
-    m_Folders:
-    - Assets/Scripts
+    m_Folders: []
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -591,7 +590,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 46b30000
     m_LastClickedID: 45894
-    m_ExpandedIDs: 00000000742700008c28000016290000403300005a330000ae3700001c3800002a3800007a380000883900000a3d0000285300002a5300002c5300002e53000030530000325300003453000036530000385300003a5300003c5300003e530000405300004253000044530000
+    m_ExpandedIDs: 0000000074270000d42700008c28000016290000462d0000403300005a330000ae3700001c3800002a3800007a38000088390000323a00000a3d0000285300002a5300002c5300002e53000030530000325300003453000036530000385300003a5300003c5300003e530000405300004253000044530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -619,7 +618,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000742700008c28000016290000403300005a330000ae3700001c3800002a3800007a380000883900000a3d0000285300002a5300002c5300002e53000030530000325300003453000036530000385300003a5300003c5300003e530000405300004253000044530000
+    m_ExpandedIDs: 0000000074270000d42700008c28000016290000462d0000403300005a330000ae3700001c3800002a3800007a38000088390000323a00000a3d0000285300002a5300002c5300002e53000030530000325300003453000036530000385300003a5300003c5300003e530000405300004253000044530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -703,7 +702,7 @@ MonoBehaviour:
   m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
-    m_CachedPref: 225
+    m_CachedPref: 194
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}

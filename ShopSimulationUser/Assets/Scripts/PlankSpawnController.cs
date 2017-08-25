@@ -21,6 +21,10 @@ public class PlankSpawnController : MonoBehaviour {
             else
                 type = "Empty";
 
+            int plankid = int.Parse(name.Split(',')[1]) * 4 - (4 - int.Parse(name.Split(',')[0]));
+            transform.Find("Pricetag").Find("Type").GetComponent<TextMesh>().text = type;
+            transform.Find("Pricetag").Find("Price").GetComponent<TextMesh>().text = transform.parent.GetComponent<GroceryTypeSelector>().priceArray[plankid - 1];
+
             firstFrame = false;
         }
     }

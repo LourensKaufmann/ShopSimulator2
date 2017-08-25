@@ -44,8 +44,6 @@ public class HeatMapDataImport : MonoBehaviour {
         {
             matrixDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
         }
-
-        Debug.Log(heatMapData.Length);
     }
 
     public string[] HeatMapFilesFromFolder<T>(string folderpath) where T : UnityEngine.UI.Text
