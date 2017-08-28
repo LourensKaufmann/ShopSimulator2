@@ -61,8 +61,7 @@ public class TutorialVRController : MonoBehaviour
             {
                 // Go to state 2 (Pull the triggers to grab items)
                 tutorialManager.tutorialState = 2;
-            }
-            
+            }            
         }
 
         HandleOutline();
@@ -108,7 +107,8 @@ public class TutorialVRController : MonoBehaviour
         if (tutorialManager.tutorialState == 2 && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
             // Go to state 3 (Try to grab a pack of milk)
-            tutorialManager.tutorialState = 3;
+            //tutorialManager.hasPressedTrigger = true;
+            tutorialManager.tutorialState = 8;
         }
 
         if (tutorialManager.tutorialState == 6 && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
@@ -159,10 +159,10 @@ public class TutorialVRController : MonoBehaviour
             !raycastHit.collider.GetComponent<GroceryDataHandler>().inCart) //raycast hit + een ray kleiner dan #  
 
         {
-            if (tutorialManager.tutorialState == 3)
+            if (tutorialManager.tutorialState == 4)
             {
                 // Go to state 4 (Put it in your cart)
-                tutorialManager.tutorialState = 4;
+                tutorialManager.tutorialState = 5;
             }
 
             gameObject = raycastHit.collider.gameObject; //het object dat de ray raakt wordt gezet in gameObject
@@ -231,10 +231,10 @@ public class TutorialVRController : MonoBehaviour
 
         if (cart != null)
         {
-            if(tutorialManager.tutorialState == 5)
+            if(tutorialManager.tutorialState == 6)
             {
                 // Go to state 6 (Are you ready to begin?)
-                tutorialManager.tutorialState = 6;
+                tutorialManager.tutorialState = 7;
             }
 
             // Detach the cart.
