@@ -16,7 +16,7 @@ public class PlankSpawnController : MonoBehaviour {
         if (firstFrame)
         {
             // Check what type the groceries on this plank are.
-            if (transform.GetChild(0).GetChild(0).GetChild(0).childCount > 0)
+            if (transform.GetChild(0).GetChild(0).GetChild(0) != null && transform.GetChild(0).GetChild(0).GetChild(0).childCount > 0)
                 type = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<GroceryDataHandler>().groceryName;
             else
                 type = "Empty";

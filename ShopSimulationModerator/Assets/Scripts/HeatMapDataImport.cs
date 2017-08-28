@@ -122,7 +122,6 @@ public class HeatMapDataImport : MonoBehaviour {
 
     public float[,] TxtToArray(string path)
     {
-        Debug.Log("TxtToArray");
         string[] matrixLines = File.ReadAllLines(path);
         List<string[]> strings = new List<string[]>();
         float[,] matrix = new float[5, 4];
