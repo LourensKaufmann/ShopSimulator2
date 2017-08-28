@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class TutorialGrocerySpawnHandler : MonoBehaviour
 {
+    TutorialManager tutorialManager;
+    bool isSpawned;
 
-    private void Start()
+    void Start()
+    {
+        tutorialManager = GameObject.Find("Tutorial Manager").GetComponent<TutorialManager>();
+    }
+
+    public void Spawn()
     {
         // Get the list of the grocery type selector.
         GameObject[] typeArray = transform.parent.parent.parent.parent.GetComponent<TutorialGroceryTypeSelector>().typeArray;
@@ -18,6 +25,15 @@ public class TutorialGrocerySpawnHandler : MonoBehaviour
             GameObject grocery = Instantiate(typeArray[plankId - 1], transform.position, Quaternion.Euler(new Vector3(0, 180, 0)));
             grocery.transform.localScale = transform.parent.parent.parent.parent.parent.localScale;
             grocery.transform.parent = transform;
+        }
+    }
+
+    void Update()
+    {
+        if (tutorialManager.tutorialState == 4 && isSpawned == false)
+        {
+            Invoke("Spawn", 5);
+            isSpawned = true;
         }
     }
 

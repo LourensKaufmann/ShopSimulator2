@@ -1,6 +1,7 @@
 ﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public struct PointerEventArgs
 {
@@ -89,11 +90,35 @@ public class SteamVR_LaserPointer : MonoBehaviour
 
         SteamVR_TrackedController controller = GetComponent<SteamVR_TrackedController>();
 
+        SteamVR_TrackedObject trackedObj = GetComponent<SteamVR_TrackedObject>();
+        var device = SteamVR_Controller.Input((int)trackedObj.index);
+
         Ray raycast = new Ray(transform.position, transform.forward);
         RaycastHit hit;
         bool bHit = Physics.Raycast(raycast, out hit);
 
-        if(previousContact && previousContact != hit.transform)
+        //Tutorial button checks
+        if (GameObject.Find("Tutorial Manager").GetComponent<TutorialManager>().tutorialState == 7)
+        {
+            if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.name == "DoorgaanButton")
+            {
+                hit.transform.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Empty.png") as Sprite;
+                if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+                {
+                    SceneManager.LoadScene("VRScene");
+                }
+            }
+            if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.name == "OpnieuwButton")
+            {
+                hit.transform.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Empty.png") as Sprite;
+                if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+                {
+                    SceneManager.LoadScene("TutorialScene");
+                }
+            }
+        }        
+
+        if (previousContact && previousContact != hit.transform)
         {
             PointerEventArgs args = new PointerEventArgs();
             if (controller != null)
