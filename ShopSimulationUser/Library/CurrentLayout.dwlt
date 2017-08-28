@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 471}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 998
-  m_MinSize: {x: 950, y: 471}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 421}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 2421
+  controlID: 145
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 421}
   m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 2327
+  controlID: 10
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 192}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 2422
+  controlID: 146
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -338,7 +338,7 @@ MonoBehaviour:
     y: 573
     width: 980
     height: 445
-  m_MaximizeOnPlay: 1
+  m_MaximizeOnPlay: 0
   m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 07000000000000000000000000000000000000000000000000000000000000000000000001000000
@@ -415,15 +415,15 @@ MonoBehaviour:
     width: 980
     height: 461
   m_SceneLighting: 1
-  lastFramingTime: 1095.4906514968895
+  lastFramingTime: 940.5950734220845
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 9.034031, y: -0.55066586, z: 10.216497}
+    m_Target: {x: 0.6405743, y: 1.0348539, z: -0.4594924}
     speed: 2
-    m_Value: {x: 9.034031, y: -0.55066586, z: 10.216497}
-  m_RenderMode: 1
+    m_Value: {x: 0.6405743, y: 1.0348539, z: -0.4594924}
+  m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
     showFog: 1
@@ -445,13 +445,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.17648402, y: -0.16570586, z: 0.030154033, w: -0.96978647}
+    m_Target: {x: -0.21381006, y: -0.43517938, z: 0.10719434, w: -0.867994}
     speed: 2
-    m_Value: {x: -0.17648402, y: -0.16570586, z: 0.030154033, w: -0.96978647}
+    m_Value: {x: -0.21381006, y: -0.43517938, z: 0.10719434, w: -0.867994}
   m_Size:
-    m_Target: 8.5227785
+    m_Target: 1.3220787
     speed: 2
-    m_Value: 8.5227785
+    m_Value: 1.3220787
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -490,23 +490,23 @@ MonoBehaviour:
     height: 927
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 523c0000
+    m_SelectedIDs: 402e0000
     m_LastClickedID: 0
-    m_ExpandedIDs: 5ce9ffff5ee9ffff6af5ffff70f5ffff1afcffff000000000e3f00005a400000dc400000
+    m_ExpandedIDs: d6d0fbff2618fcff3818fcffe2e2ffff68e4ffff2ae7ffff14e9ffff5ee9ffff1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: dShelf
+      m_OriginalName: dShelf
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -5794
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
@@ -553,7 +553,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Materials
+    - Assets/Resources
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -592,7 +592,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000762700008e280000482d0000d82d0000123300003e3300008c340000b6370000343800008438000092390000163d0000ca680000cc680000ce680000d0680000d2680000d4680000d6680000d8680000da680000dc680000de680000e0680000e2680000e4680000e6680000e8680000
+    m_ExpandedIDs: 00000000762700007a270000482d0000782d00009a2d00003e3300008c340000ea3400003438000084380000923900000a3b0000163d0000ca680000cc680000ce680000d0680000d2680000d4680000d6680000d8680000da680000dc680000de680000e0680000e2680000e4680000e6680000e8680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
