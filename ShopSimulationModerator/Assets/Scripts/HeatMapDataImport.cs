@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class HeatMapDataImport : MonoBehaviour {
 
     [SerializeField]
-    private Dropdown heatMapDropDown, matrixDropDown;
+    private Dropdown heatMapDropDown;
 
     public HeatMapDataImport onValueChanged;
 
@@ -24,28 +24,19 @@ public class HeatMapDataImport : MonoBehaviour {
         Renderer renderer = GetComponent<Renderer>();
         Material material = renderer.sharedMaterial;
 
-        heatMapDropDown.onValueChanged.AddListener(OnHeatMapValueChanged);
-        matrixDropDown.onValueChanged.AddListener(OnMatrixValueChanged);
+        heatMapDropDown.onValueChanged.AddListener(OnValueChanged);
 
         string[] heatMapData = HeatMapFilesFromFolder<Text>("Data/HeatMapData");
         string[] matrixData = MatrixFilesFromFolder<Text>("Data/MatrixData");
 
         heatMapDropDown.options.Clear();
-        matrixDropDown.options.Clear();
 
         heatMapDropDown.options.Add(new Dropdown.OptionData() { text = "-" });
-        matrixDropDown.options.Add(new Dropdown.OptionData() { text = "-" });
 
         foreach (string c in heatMapData)
         {
             heatMapDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
         }
-        foreach (string c in matrixData)
-        {
-            matrixDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
-        }
-
-        Debug.Log(heatMapData.Length);
     }
 
     public string[] HeatMapFilesFromFolder<T>(string folderpath) where T : UnityEngine.UI.Text
@@ -76,9 +67,8 @@ public class HeatMapDataImport : MonoBehaviour {
         return matrixNames.ToArray();
     }
 
-    void OnHeatMapValueChanged(int index)
+    void OnValueChanged(int index)
     {
-        Debug.Log("OnHeatMapValueChanged");
         string selection = heatMapDropDown.options[heatMapDropDown.value].text.Substring(0, 25);
         string path = Application.dataPath + "/Resources/Data/HeatMapData/" + selection + "Pos.txt";
         Vector4[] positions = TextToVector4(path);
@@ -88,19 +78,12 @@ public class HeatMapDataImport : MonoBehaviour {
         material.SetInt("_Points_Length", positions.Length);
         material.SetVectorArray("_Points", positions);
         material.SetVectorArray("_Properties", properties);
-    }
 
-    void OnMatrixValueChanged(int index)
-    {
-        Debug.Log("OnMatrixValueChanged");
-        string selection = matrixDropDown.options[matrixDropDown.value].text.Substring(0, 18);
-        string path = Application.dataPath + "/Resources/Data/MatrixData/" + selection + "Matrix.txt";
-
+        selection = heatMapDropDown.options[heatMapDropDown.value].text.Substring(0, 18);
+        path = Application.dataPath + "/Resources/Data/MatrixData/" + selection + "Matrix.txt";
         float[,] matrix = TxtToArray(path);
-
         for (int i = 0; i < matrixtextRowZero.Length; i++)
         {
-            Debug.Log(matrix[4,0]);
             matrixtextRowZero[i].text = matrix[0, i].ToString();
             matrixtextRowOne[i].text = matrix[1, i].ToString();
             matrixtextRowTwo[i].text = matrix[2, i].ToString();

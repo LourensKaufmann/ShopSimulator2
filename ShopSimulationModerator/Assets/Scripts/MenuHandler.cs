@@ -2,70 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuHandler : MonoBehaviour {
 
     [SerializeField]
     Camera camera;
-    [SerializeField]
-    private GameObject Tutorial;
-    [SerializeField]
-    private GameObject VRRoom;
-    [SerializeField]
-    private GameObject Exit;
-    [SerializeField]
-    private GameObject Data;
-    [SerializeField]
-    private GameObject ShelfSelector;
-    [SerializeField]
-    private GameObject Canvas;
 
-    private bool inShelfEditor;
+    [SerializeField]
+    private GameObject toggleH;
+    [SerializeField]
+    private GameObject toggleM;
+    [SerializeField]
+    private GameObject canvas1;
+    [SerializeField]
+    private GameObject canvas2;
+    [SerializeField]
+    private GameObject matrix;
+    [SerializeField]
+    private GameObject shelf;
+    [SerializeField]
+    private GameObject heatMap;
 
     private void Start()
     {
-        inShelfEditor = false;
+        canvas2.SetActive(false);
     }
 
-    private void Update()
+    public void SwitchScreen()
     {
-        if (!inShelfEditor)
+        if (canvas1.activeSelf)
         {
-            Canvas.SetActive(false);
+            // Data is active so switch to Editor.
+            canvas1.SetActive(false);
+            matrix.SetActive(false);
+            shelf.SetActive(false);
+            heatMap.SetActive(false);
+            canvas2.SetActive(true);
         }
 
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Input.GetMouseButtonDown(0)) {
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider.name == "ShelfEditor")
-                {
-                    // Switch between Menu & Shelf editor.
-                    if (!inShelfEditor)
-                    {
-                        inShelfEditor = true;
-                        Canvas.SetActive(true);
-
-                        Tutorial.SetActive(false);
-                        VRRoom.SetActive(false);
-                        Exit.SetActive(false);
-                        Data.SetActive(false);
-                    }
-                    else
-                    {
-                        inShelfEditor = false;
-                        Canvas.SetActive(false);
-
-                        Tutorial.SetActive(true);
-                        VRRoom.SetActive(true);
-                        Exit.SetActive(true);
-                        Data.SetActive(true);
-                    }
-                }
-            }
+        else if (canvas2.activeSelf)
+        {
+            // Editor is active so switch to Data.
+            canvas1.SetActive(true);
+            matrix.SetActive(true);
+            shelf.SetActive(true);
+            heatMap.SetActive(true);
+            canvas2.SetActive(false);
         }
+        
+    }
+
+    public void ToggleHeatmap ()
+    {
+        heatMap.SetActive(toggleH.GetComponent<Toggle>().isOn);
+    }
+
+    public void ToggleMatrix()
+    {
+        matrix.SetActive(toggleM.GetComponent<Toggle>().isOn);
     }
 
 }

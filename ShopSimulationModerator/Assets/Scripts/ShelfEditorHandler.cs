@@ -7,16 +7,25 @@ using UnityEngine.UI;
 public class ShelfEditorHandler : MonoBehaviour {
 
     List<Dropdown> dropdowns = new List<Dropdown>();
+    List<InputField> inputFields = new List<InputField>();
     List<string> groceryChoices;
+    [HideInInspector]
     public List<string> shelfselection;
+    [HideInInspector]
+    public List<string> priceselection;
 
-    public void Start () {
-        DontDestroyOnLoad(gameObject);
+    public void Awake () {
         List<GameObject> dropdownObjects = new List<GameObject>();
- 
-        foreach(Transform child in GameObject.Find("ShelfChoices").transform)
+        List<GameObject> inputFieldObjects = new List<GameObject>();
+
+        foreach (Transform child in GameObject.Find("ShelfChoices").transform)
         {
             dropdownObjects.Add(child.gameObject);
+        }
+
+        foreach (Transform child in GameObject.Find("PriceInputFields").transform)
+        {
+            inputFieldObjects.Add(child.gameObject);
         }
 
         for (int i = 0; i < dropdownObjects.Count; i++)
@@ -24,6 +33,13 @@ public class ShelfEditorHandler : MonoBehaviour {
             // Add all dropdowns in scene to a list for later use.
             dropdowns.Add(dropdownObjects[i].GetComponent<Dropdown>());
         }
+
+        for (int i = 0; i < inputFieldObjects.Count; i++)
+        {
+            // Add all input fields in scene to a list for later use.
+            inputFields.Add(inputFieldObjects[i].GetComponent<InputField>());
+        }
+
 #if UNITY_EDITOR
         string path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Groceries";
 #else
@@ -54,14 +70,23 @@ public class ShelfEditorHandler : MonoBehaviour {
     {
         // Update the list
         shelfselection = new List<string>();
+        priceselection = new List<string>();
         for (int i = 0; i < dropdowns.Count; i++)
         {
             shelfselection.Add(groceryChoices[dropdowns[i].value]);
         }
+        for (int i = 0; i < inputFields.Count; i++)
+        {
+            if (inputFields[i].text != "") priceselection.Add(inputFields[i].text);
+            else priceselection.Add("0");
+        }
+
 #if UNITY_EDITOR
         File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\shelfselection.txt", shelfselection.ToArray());
+        File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\priceselection.txt", priceselection.ToArray());
 #else
         File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\shelfselection.txt", shelfselection.ToArray());
+        File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\priceselection.txt", priceselection.ToArray());
 #endif
     }
 
