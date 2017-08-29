@@ -98,17 +98,21 @@ public class HeatMapDataImport : MonoBehaviour {
         selection = heatMapDropDown.options[heatMapDropDown.value].text.Substring(0, 18);
 #if UNITY_EDITOR
         path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\MatrixData\\" + selection + "Matrix.txt";
+        string[] shelfSelection = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + selection + "shelfItems.txt");
+        string[] priceSelection = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + selection + "shelfPrices.txt");
 #else
         path = Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\MatrixData\\" + selection + "Matrix.txt";
+        string[] shelfSelection = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + selection + "shelfItems.txt");
+        string[] priceSelection = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + selection + "shelfPrices.txt");
 #endif
         float[,] matrix = TxtToArray(path);
         for (int i = 0; i < matrixtextRowZero.Length; i++)
         {
-            matrixtextRowZero[i].text = matrix[0, i].ToString();
-            matrixtextRowOne[i].text = matrix[1, i].ToString();
-            matrixtextRowTwo[i].text = matrix[2, i].ToString();
-            matrixtextRowThree[i].text = matrix[3, i].ToString();
-            matrixtextRowFour[i].text = matrix[4, i].ToString();
+            matrixtextRowZero[i].text = "Type:\t\t" + shelfSelection[i] + '\n' + "Amount:\t" + matrix[0, i].ToString() + '\n' + "Price:\t\t" + priceSelection[i];
+            matrixtextRowOne[i].text = "Type:\t\t" + shelfSelection[i + 4] + '\n' + "Amount:\t" + matrix[1, i].ToString() + '\n' + "Price:\t\t" + priceSelection[i + 4];
+            matrixtextRowTwo[i].text = "Type:\t\t" + shelfSelection[i + 8] + '\n' + "Amount:\t" + matrix[2, i].ToString() + '\n' + "Price:\t\t" + priceSelection[i + 8];
+            matrixtextRowThree[i].text = "Type:\t\t" + shelfSelection[i + 12] + '\n' + "Amount:\t" + matrix[3, i].ToString() + '\n' + "Price:\t\t" + priceSelection[i + 12];
+            matrixtextRowFour[i].text = "Type:\t\t" + shelfSelection[i + 16] + '\n' + "Amount:\t" + matrix[4, i].ToString() + '\n' + "Price:\t\t" + priceSelection[i + 16];
         }
     }
 
@@ -136,7 +140,7 @@ public class HeatMapDataImport : MonoBehaviour {
         }
 
         
-        // Two Vector4 lists are returned
+        // Vector4 list is returned
         return heatmapPositionsVector4.ToArray();
     }
 
@@ -153,13 +157,32 @@ public class HeatMapDataImport : MonoBehaviour {
 
         for (int i = 0; i < 5; i++)
         {
-            //int count = 0;
             matrix[i, 0] = float.Parse(strings[i][0]);
             matrix[i, 1] = float.Parse(strings[i][1]);
             matrix[i, 2] = float.Parse(strings[i][2]);
             matrix[i, 3] = float.Parse(strings[i][3]);
-            //matrix[i, 4] = float.Parse(strings[i][4]);
         }
         return matrix;
+    }
+
+    public void RefreshData()
+    {
+#if UNITY_EDITOR
+        string[] heatMapData = HeatMapFilesFromFolder<Text>(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\MatrixData");
+#else
+        string[] heatMapData = HeatMapFilesFromFolder<Text>(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\MatrixData");
+#endif
+
+        heatMapDropDown.options.Clear();
+
+        heatMapDropDown.options.Add(new Dropdown.OptionData() { text = "-" });
+
+        foreach (string c in heatMapData)
+        {
+            string opt = c.Split('\\')[c.Split('\\').Length - 1];
+            heatMapDropDown.options.Add(new Dropdown.OptionData() { text = opt });
+        }
+
+        OnValueChanged(0);
     }
 }

@@ -12,27 +12,12 @@ public class DataHandler : MonoBehaviour {
     List<string> matrixList = new List<string>();
     JsonData itemJson;
     JsonData matrixJson;
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void Update()
+    {
         //if (Input.GetKeyDown(KeyCode.KeypadEnter))
         //{
-        //     UpdateItems("Melk", 5);
-        //}
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    Debug.Log("print items");
-        //    foreach (Item i in items)
-        //    {
-        //        print(i.name + " " + i.number);
-        //    }
-        //}
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
         //    ExportData();
-        //    //itemJson = JsonMapper.ToJson(matrixList);
-        //    //File.WriteAllText(Application.dataPath + "/Resources/Data/MatrixData/" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-MatrixTest.json", itemJson.ToString());
-        //    //Debug.Log("added");
         //}
     }
 
@@ -64,10 +49,8 @@ public class DataHandler : MonoBehaviour {
 
     public void ExportData()
     {
+        // Export matrix:
         itemJson = JsonMapper.ToJson(items);
-
-
-
 #if UNITY_EDITOR
         File.WriteAllText(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Data\\" + "Items.json", itemJson.ToString());
         System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Data\\MatrixData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-Matrix.txt");
@@ -93,13 +76,27 @@ public class DataHandler : MonoBehaviour {
         streamWriter.Close();
 
         itemJson = JsonMapper.ToJson(items);
-        //File.WriteAllText(Application.dataPath + "/Data/ItemsTest.json", itemJson.ToString());
         itemJson += JsonMapper.ToJson(matrixList);
-        //File.WriteAllText(Application.dataPath + "/Data/ItemsTest.json", itemJson.ToString());
 #if UNITY_EDITOR
         File.WriteAllText(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\ItemsTest.json", itemJson.ToString());
 #else
         File.WriteAllText(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ItemsTest.json", itemJson.ToString());
+#endif
+
+        // Export shelfdata
+#if UNITY_EDITOR
+        string[] shelfSelection = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\shelfselection.txt");
+        string[] priceSelection = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\priceselection.txt");
+#else
+        string[] shelfSelection = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\shelfselection.txt");
+        string[] priceSelection = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\priceselection.txt");
+#endif
+#if UNITY_EDITOR
+        File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-shelfItems.txt", shelfSelection);
+        File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-shelfPrices.txt", priceSelection);
+#else
+        File.WriteAllText(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "shelfItems", shelfSelection.ToString());
+        File.WriteAllText(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "shelfPrices", priceSelection.ToString());
 #endif
     }
 }

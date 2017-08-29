@@ -22,7 +22,7 @@ public class Heatmap : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.KeypadEnter))
         //{
         //    ExportHeatMapData();
-        //}        
+        //}
     }
 
     public void InputHeatMapPositions(Vector3 position, float intensity, float radius)

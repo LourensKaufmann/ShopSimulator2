@@ -63,4 +63,9 @@ public class MenuHandler : MonoBehaviour {
         matrix.SetActive(toggleM.GetComponent<Toggle>().isOn);
     }
 
+    public void RefreshData()
+    {
+        heatMap.GetComponent<HeatMapDataImport>().RefreshData();
+    }
+
 }
