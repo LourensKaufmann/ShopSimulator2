@@ -54,7 +54,12 @@ public class Heatmap : MonoBehaviour
             stringPositions.Add(positions[i].x + "," + positions[i].y + "," + positions[i].z + "," + positions[i].w);
             stringProperties.Add(properties[i].x + "," + properties[i].y + "," + properties[i].z + "," + properties[i].w);
         }
-        File.WriteAllLines(Application.dataPath + "/Resources/Data/HeatMapData/" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapPos.txt", stringPositions.ToArray());
-        File.WriteAllLines(Application.dataPath + "/Resources/Data/HeatMapData/" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapProp.txt", stringProperties.ToArray());
+#if UNITY_EDITOR
+        File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapPos.txt", stringPositions.ToArray());
+        File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapProp.txt", stringProperties.ToArray());
+#else
+        File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapPos.txt", stringPositions.ToArray());
+        File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapProp.txt", stringProperties.ToArray());
+#endif
     }
 }

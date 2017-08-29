@@ -39,7 +39,7 @@ public class EndTimer : MonoBehaviour {
             // End scene
             dHandler.GetComponent<DataHandler>().ExportData();
             hMap.GetComponent<Heatmap>().ExportHeatMapData();
-            SceneManager.LoadScene("Menu");
+            Application.Quit();
         }
 	}
 }

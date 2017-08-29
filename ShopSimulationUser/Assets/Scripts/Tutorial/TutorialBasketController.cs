@@ -40,10 +40,10 @@ public class TutorialBasketController : MonoBehaviour {
             gData = col.GetComponent<GroceryDataHandler>();
             if (!col.GetComponent<Rigidbody>().isKinematic && !gData.inCart)
             {
-                if (tutorialManager.tutorialState == 5)
+                if (tutorialManager.tutorialState == 7)
                 {
-                    // Go to state 5 (You can also move your cart)
-                    tutorialManager.tutorialState = 6;
+                    tutorialManager.InvokeMethod("ChangeState", 0, 8);
+                    tutorialManager.InvokeMethod("ChangeText", 0, "Door op het handvat van de winkelwagen \nte drukken kun je je winkelwagen bewegen");
                 }
 
                 // Grocery has been added to the shopping cart.

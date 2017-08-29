@@ -27,8 +27,8 @@ public class HeatMapDataImport : MonoBehaviour {
         heatMapDropDown.onValueChanged.AddListener(OnHeatMapValueChanged);
         matrixDropDown.onValueChanged.AddListener(OnMatrixValueChanged);
 
-        string[] heatMapData = HeatMapFilesFromFolder<Text>("Data/HeatMapData");
-        string[] matrixData = MatrixFilesFromFolder<Text>("Data/MatrixData");
+        string[] heatMapData = HeatMapFilesFromFolder<Text>(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData");
+        string[] matrixData = MatrixFilesFromFolder<Text>(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\MatrixData");
 
         heatMapDropDown.options.Clear();
         matrixDropDown.options.Clear();
@@ -80,9 +80,9 @@ public class HeatMapDataImport : MonoBehaviour {
     {
         Debug.Log("OnHeatMapValueChanged");
         string selection = heatMapDropDown.options[heatMapDropDown.value].text.Substring(0, 25);
-        string path = Application.dataPath + "/Resources/Data/HeatMapData/" + selection + "Pos.txt";
+        string path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData" + selection + "Pos.txt";
         Vector4[] positions = TextToVector4(path);
-        path = Application.dataPath + "/Resources/Data/HeatMapData/" + selection + "Prop.txt";
+        path = Application.dataPath + Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData" + selection + "Prop.txt";
         Vector4[] properties = TextToVector4(path);
 
         material.SetInt("_Points_Length", positions.Length);
@@ -94,8 +94,8 @@ public class HeatMapDataImport : MonoBehaviour {
     {
         Debug.Log("OnMatrixValueChanged");
         string selection = matrixDropDown.options[matrixDropDown.value].text.Substring(0, 18);
-        string path = Application.dataPath + "/Resources/Data/MatrixData/" + selection + "Matrix.txt";
-
+        string path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\MatrixData" + selection + "Matrix.txt";
+        
         float[,] matrix = TxtToArray(path);
 
         for (int i = 0; i < matrixtextRowZero.Length; i++)

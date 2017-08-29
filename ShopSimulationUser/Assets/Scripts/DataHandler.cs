@@ -65,9 +65,17 @@ public class DataHandler : MonoBehaviour {
     public void ExportData()
     {
         itemJson = JsonMapper.ToJson(items);
-        File.WriteAllText(Application.dataPath + "/Data/Items.json", itemJson.ToString());
 
-        System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(Application.dataPath + "/Resources/Data/MatrixData/" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-Matrix.txt");
+
+
+#if UNITY_EDITOR
+        File.WriteAllText(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Data\\" + "Items.json", itemJson.ToString());
+        System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Data\\MatrixData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-Matrix.txt");
+#else
+        File.WriteAllText(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data\\Data\\" + "Items.json", itemJson.ToString());
+        System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data\\Data\\MatrixData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-Matrix.txt");
+#endif
+
         string output = "";
         for (int y = 0; y < matrix.GetLength(1); y++)
         {
@@ -87,7 +95,12 @@ public class DataHandler : MonoBehaviour {
         itemJson = JsonMapper.ToJson(items);
         //File.WriteAllText(Application.dataPath + "/Data/ItemsTest.json", itemJson.ToString());
         itemJson += JsonMapper.ToJson(matrixList);
-        File.WriteAllText(Application.dataPath + "/Data/ItemsTest.json", itemJson.ToString());
+        //File.WriteAllText(Application.dataPath + "/Data/ItemsTest.json", itemJson.ToString());
+#if UNITY_EDITOR
+        File.WriteAllText(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\ItemsTest.json", itemJson.ToString());
+#else
+        File.WriteAllText(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ItemsTest.json", itemJson.ToString());
+#endif
     }
 }
 

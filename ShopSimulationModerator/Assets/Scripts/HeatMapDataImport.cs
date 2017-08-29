@@ -26,8 +26,12 @@ public class HeatMapDataImport : MonoBehaviour {
 
         heatMapDropDown.onValueChanged.AddListener(OnValueChanged);
 
-        string[] heatMapData = HeatMapFilesFromFolder<Text>("Data/HeatMapData");
-        string[] matrixData = MatrixFilesFromFolder<Text>("Data/MatrixData");
+#if UNITY_EDITOR
+        string[] heatMapData = HeatMapFilesFromFolder<Text>(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\MatrixData");
+#else
+        string[] heatMapData = HeatMapFilesFromFolder<Text>(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\MatrixData");
+#endif
+        //string[] matrixData = MatrixFilesFromFolder<Text>(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\MatrixData");
 
         heatMapDropDown.options.Clear();
 
@@ -35,19 +39,22 @@ public class HeatMapDataImport : MonoBehaviour {
 
         foreach (string c in heatMapData)
         {
-            heatMapDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
+            //heatMapDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
+            string opt = c.Split('\\')[c.Split('\\').Length - 1];
+            heatMapDropDown.options.Add(new Dropdown.OptionData() { text = opt });
         }
     }
 
     public string[] HeatMapFilesFromFolder<T>(string folderpath) where T : UnityEngine.UI.Text
     {
-        var allfiles = Resources.LoadAll(folderpath);
+        DirectoryInfo dir = new DirectoryInfo(folderpath);
+        var allfiles = dir.GetFiles();
         List<string> heatMapNames = new List<string>();
         for (int i = 0; i < allfiles.Length; i++)
         {
-            if (allfiles[i].name.Contains("Pos"))
+            if (allfiles[i].FullName.Contains("-Matrix"))
             {
-                heatMapNames.Add(allfiles[i].name);
+                heatMapNames.Add(allfiles[i].FullName);
             }
         }
         return heatMapNames.ToArray();
@@ -55,13 +62,14 @@ public class HeatMapDataImport : MonoBehaviour {
     
     public string[] MatrixFilesFromFolder<T>(string folderpath) where T : UnityEngine.UI.Text
     {
-        var allfiles = Resources.LoadAll(folderpath);
+        DirectoryInfo dir = new DirectoryInfo(folderpath);
+        var allfiles = dir.GetFiles();
         List<string> matrixNames = new List<string>();
         for (int i = 0; i < allfiles.Length; i++)
         {
-            if (allfiles[i].name.Contains("Matrix"))
+            if (allfiles[i].FullName.Contains("Matrix"))
             {
-                matrixNames.Add(allfiles[i].name);
+                matrixNames.Add(allfiles[i].FullName);
             }
         }
         return matrixNames.ToArray();
@@ -69,18 +77,30 @@ public class HeatMapDataImport : MonoBehaviour {
 
     void OnValueChanged(int index)
     {
-        string selection = heatMapDropDown.options[heatMapDropDown.value].text.Substring(0, 25);
-        string path = Application.dataPath + "/Resources/Data/HeatMapData/" + selection + "Pos.txt";
+        string selection = heatMapDropDown.options[heatMapDropDown.value].text.Substring(0, 18);
+#if UNITY_EDITOR
+        string path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + selection + "HeatMapPos.txt";
         Vector4[] positions = TextToVector4(path);
-        path = Application.dataPath + "/Resources/Data/HeatMapData/" + selection + "Prop.txt";
+        path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + selection + "HeatMapProp.txt";
         Vector4[] properties = TextToVector4(path);
+#else
+        string path = Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + selection + "HeatMapPos.txt";
+        Vector4[] positions = TextToVector4(path);
+        path = Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + selection + "HeatMapProp.txt";
+        Vector4[] properties = TextToVector4(path);
+#endif
+
 
         material.SetInt("_Points_Length", positions.Length);
         material.SetVectorArray("_Points", positions);
         material.SetVectorArray("_Properties", properties);
 
         selection = heatMapDropDown.options[heatMapDropDown.value].text.Substring(0, 18);
-        path = Application.dataPath + "/Resources/Data/MatrixData/" + selection + "Matrix.txt";
+#if UNITY_EDITOR
+        path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\MatrixData\\" + selection + "Matrix.txt";
+#else
+        path = Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\MatrixData\\" + selection + "Matrix.txt";
+#endif
         float[,] matrix = TxtToArray(path);
         for (int i = 0; i < matrixtextRowZero.Length; i++)
         {

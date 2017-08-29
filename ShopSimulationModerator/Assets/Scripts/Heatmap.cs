@@ -10,9 +10,9 @@ public class Heatmap : MonoBehaviour
     public List<Vector4> positionList = new List<Vector4>();
     public List<Vector4> propertiesList = new List<Vector4>();
     public List<float> radiusList = new List<float>();
-    public List<float> intensityList = new List<float>(); 
+    public List<float> intensityList = new List<float>();
 
-    public Material material;   
+    public Material material;
 
     bool updateList = false;
     JsonData heatMapJson;
@@ -36,7 +36,7 @@ public class Heatmap : MonoBehaviour
     //{
     //    Vector4[] positions = positionList.GetRange(0, positionList.Count).ToArray();
     //    Vector4[] properties = propertiesList.GetRange(0, propertiesList.Count).ToArray();
-        
+
     //    material.SetInt("_Points_Length", positions.Length);
     //    material.SetVectorArray("_Points", positions);
     //    material.SetVectorArray("_Properties", properties);
@@ -54,7 +54,7 @@ public class Heatmap : MonoBehaviour
             stringPositions.Add(positions[i].x + "," + positions[i].y + "," + positions[i].z + "," + positions[i].w);
             stringProperties.Add(properties[i].x + "," + properties[i].y + "," + properties[i].z + "," + properties[i].w);
         }
-        File.WriteAllLines(Application.dataPath + "/Resources/Data/HeatMapData/" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapPos.txt", stringPositions.ToArray());
-        File.WriteAllLines(Application.dataPath + "/Resources/Data/HeatMapData/" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapProp.txt", stringProperties.ToArray());
+        File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapProp.txt", stringPositions.ToArray());
+        File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-HeatMapProp.txt", stringProperties.ToArray());
     }
 }

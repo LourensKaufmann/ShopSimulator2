@@ -16,7 +16,11 @@ public delegate void PointerEventHandler(object sender, PointerEventArgs e);
 
 public class SteamVR_LaserPointer : MonoBehaviour
 {
+    [SerializeField]
+    Material mat;
+
     public bool active = true;
+    public bool laserActive = false;
     public Color color;
     public float thickness = 0.002f;
     public GameObject holder;
@@ -26,42 +30,15 @@ public class SteamVR_LaserPointer : MonoBehaviour
     public Transform reference;
     public event PointerEventHandler PointerIn;
     public event PointerEventHandler PointerOut;
+    public GameObject continueButton, resetButton;
+    public Sprite darkSprite, lightSprite;
 
     Transform previousContact = null;
 
 	// Use this for initialization
 	void Start ()
     {
-        holder = new GameObject();
-        holder.transform.parent = this.transform;
-        holder.transform.localPosition = Vector3.zero;
-		holder.transform.localRotation = Quaternion.identity;
-
-		pointer = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        pointer.transform.parent = holder.transform;
-        pointer.transform.localScale = new Vector3(thickness, thickness, 100f);
-        pointer.transform.localPosition = new Vector3(0f, 0f, 50f);
-		pointer.transform.localRotation = Quaternion.identity;
-		BoxCollider collider = pointer.GetComponent<BoxCollider>();
-        if (addRigidBody)
-        {
-            if (collider)
-            {
-                collider.isTrigger = true;
-            }
-            Rigidbody rigidBody = pointer.AddComponent<Rigidbody>();
-            rigidBody.isKinematic = true;
-        }
-        else
-        {
-            if(collider)
-            {
-                Object.Destroy(collider);
-            }
-        }
-        Material newMaterial = new Material(Shader.Find("Unlit/Color"));
-        newMaterial.SetColor("_Color", color);
-        pointer.GetComponent<MeshRenderer>().material = newMaterial;
+        
 	}
 
     public virtual void OnPointerIn(PointerEventArgs e)
@@ -80,87 +57,135 @@ public class SteamVR_LaserPointer : MonoBehaviour
     // Update is called once per frame
 	void Update ()
     {
-        if (!isActive)
+        if (laserActive)
         {
-            isActive = true;
-            this.transform.GetChild(0).gameObject.SetActive(true);
-        }
-
-        float dist = 100f;
-
-        SteamVR_TrackedController controller = GetComponent<SteamVR_TrackedController>();
-
-        SteamVR_TrackedObject trackedObj = GetComponent<SteamVR_TrackedObject>();
-        var device = SteamVR_Controller.Input((int)trackedObj.index);
-
-        Ray raycast = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-        bool bHit = Physics.Raycast(raycast, out hit);
-
-        //Tutorial button checks
-        if (GameObject.Find("Tutorial Manager").GetComponent<TutorialManager>().tutorialState == 7)
-        {
-            if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.name == "DoorgaanButton")
+            if (!isActive)
             {
-                hit.transform.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Empty.png") as Sprite;
-                if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+                isActive = true;
+                this.transform.GetChild(0).gameObject.SetActive(true);
+            }
+
+            float dist = 100f;
+
+            SteamVR_TrackedController controller = GetComponent<SteamVR_TrackedController>();
+
+            SteamVR_TrackedObject trackedObj = GetComponent<SteamVR_TrackedObject>();
+            var device = SteamVR_Controller.Input((int)trackedObj.index);
+
+            Ray raycast = new Ray(transform.position, transform.forward);
+            RaycastHit hit;
+            bool bHit = Physics.Raycast(raycast, out hit);
+
+            //Tutorial button checks
+            if (GameObject.Find("Tutorial Manager").GetComponent<TutorialManager>().tutorialState == 9)
+            {
+                if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject == continueButton)
                 {
-                    SceneManager.LoadScene("VRScene");
+                    Debug.Log("ContinueButton");
+                    hit.transform.gameObject.GetComponent<SpriteRenderer>().sprite = darkSprite;
+                    if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+                    {
+                        SceneManager.LoadScene("VRScene");
+                    }
+                }
+                else if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject == resetButton)
+                {
+                    Debug.Log("ResetButton");
+                    hit.transform.gameObject.GetComponent<SpriteRenderer>().sprite = darkSprite;
+                    if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+                    {
+                        continueButton.SetActive(false);
+                        resetButton.SetActive(false);
+                        SceneManager.LoadScene("TutorialScene");
+                    }
+                }
+                else
+                {
+                    continueButton.gameObject.GetComponent<SpriteRenderer>().sprite = lightSprite;
+                    resetButton.gameObject.GetComponent<SpriteRenderer>().sprite = lightSprite;
                 }
             }
-            if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.name == "OpnieuwButton")
+
+            if (previousContact && previousContact != hit.transform)
             {
-                hit.transform.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Empty.png") as Sprite;
-                if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+                PointerEventArgs args = new PointerEventArgs();
+                if (controller != null)
                 {
-                    SceneManager.LoadScene("TutorialScene");
+                    args.controllerIndex = controller.controllerIndex;
                 }
+                args.distance = 0f;
+                args.flags = 0;
+                args.target = previousContact;
+                OnPointerOut(args);
+                previousContact = null;
             }
+            if (bHit && previousContact != hit.transform)
+            {
+                PointerEventArgs argsIn = new PointerEventArgs();
+                if (controller != null)
+                {
+                    argsIn.controllerIndex = controller.controllerIndex;
+                }
+                argsIn.distance = hit.distance;
+                argsIn.flags = 0;
+                argsIn.target = hit.transform;
+                OnPointerIn(argsIn);
+                previousContact = hit.transform;
+            }
+            if (!bHit)
+            {
+                previousContact = null;
+            }
+            if (bHit && hit.distance < 100f)
+            {
+                dist = hit.distance;
+            }
+
+            if (controller != null && controller.triggerPressed)
+            {
+                pointer.transform.localScale = new Vector3(thickness * 5f, thickness * 5f, dist);
+            }
+            else
+            {
+                pointer.transform.localScale = new Vector3(thickness, thickness, dist);
+            }
+            pointer.transform.localPosition = new Vector3(0f, 0f, dist / 2f);
         }        
+    }
 
-        if (previousContact && previousContact != hit.transform)
-        {
-            PointerEventArgs args = new PointerEventArgs();
-            if (controller != null)
-            {
-                args.controllerIndex = controller.controllerIndex;
-            }
-            args.distance = 0f;
-            args.flags = 0;
-            args.target = previousContact;
-            OnPointerOut(args);
-            previousContact = null;
-        }
-        if(bHit && previousContact != hit.transform)
-        {
-            PointerEventArgs argsIn = new PointerEventArgs();
-            if (controller != null)
-            {
-                argsIn.controllerIndex = controller.controllerIndex;
-            }
-            argsIn.distance = hit.distance;
-            argsIn.flags = 0;
-            argsIn.target = hit.transform;
-            OnPointerIn(argsIn);
-            previousContact = hit.transform;
-        }
-        if(!bHit)
-        {
-            previousContact = null;
-        }
-        if (bHit && hit.distance < 100f)
-        {
-            dist = hit.distance;
-        }
+    public void FakeStart()
+    {
+        holder = new GameObject();
+        holder.transform.parent = this.transform;
+        holder.transform.localPosition = Vector3.zero;
+        holder.transform.localRotation = Quaternion.identity;
 
-        if (controller != null && controller.triggerPressed)
+        pointer = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        pointer.transform.parent = holder.transform;
+        pointer.transform.localScale = new Vector3(thickness, thickness, 100f);
+        pointer.transform.localPosition = new Vector3(0f, 0f, 50f);
+        pointer.transform.localRotation = Quaternion.identity;
+        BoxCollider collider = pointer.GetComponent<BoxCollider>();
+        if (addRigidBody)
         {
-            pointer.transform.localScale = new Vector3(thickness * 5f, thickness * 5f, dist);
+            if (collider)
+            {
+                collider.isTrigger = true;
+            }
+            Rigidbody rigidBody = pointer.AddComponent<Rigidbody>();
+            rigidBody.isKinematic = true;
         }
         else
         {
-            pointer.transform.localScale = new Vector3(thickness, thickness, dist);
+            if (collider)
+            {
+                Object.Destroy(collider);
+            }
         }
-        pointer.transform.localPosition = new Vector3(0f, 0f, dist/2f);
+        Material newMaterial = mat;
+        newMaterial.SetColor("_Color", color);
+        pointer.GetComponent<MeshRenderer>().material = newMaterial;
+
+        laserActive = true;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlankSpawnController : MonoBehaviour {
 
@@ -21,9 +22,12 @@ public class PlankSpawnController : MonoBehaviour {
             else
                 type = "Empty";
 
-            int plankid = int.Parse(name.Split(',')[1]) * 4 - (4 - int.Parse(name.Split(',')[0]));
-            transform.Find("Pricetag").Find("Type").GetComponent<TextMesh>().text = type;
-            transform.Find("Pricetag").Find("Price").GetComponent<TextMesh>().text = transform.parent.GetComponent<GroceryTypeSelector>().priceArray[plankid - 1];
+            if (SceneManager.GetActiveScene().name == "VRScene")
+            {
+                int plankid = int.Parse(name.Split(',')[1]) * 4 - (4 - int.Parse(name.Split(',')[0]));
+                transform.Find("Pricetag").Find("Type").GetComponent<TextMesh>().text = type;
+                transform.Find("Pricetag").Find("Price").GetComponent<TextMesh>().text = transform.parent.GetComponent<GroceryTypeSelector>().priceArray[plankid - 1];
+            }
 
             firstFrame = false;
         }

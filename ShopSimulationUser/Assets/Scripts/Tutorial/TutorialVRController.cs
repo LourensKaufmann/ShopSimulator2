@@ -42,14 +42,17 @@ public class TutorialVRController : MonoBehaviour
     GroceryDataHandler gData;
     bool isVisible;
 
+    public float waitTime;
+    public bool hasPressedTrigger = false;
+
     void Awake()
     {
         tutorialManager = tutorialManagerGameObject.GetComponent<TutorialManager>();
-
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         empty = Shader.Find("Standard");
         outline = Shader.Find("Custom/OutlineEffect");
         if (SceneManager.GetActiveScene().name != "Menu" && SceneManager.GetActiveScene().name != "HeatMapScene") spawnController = GameObject.FindGameObjectWithTag("Floor").GetComponent<SpawnController>();
+        waitTime = 10;
     }
 
     void Update()
@@ -103,29 +106,38 @@ public class TutorialVRController : MonoBehaviour
     void StateManager()
     {
         var device = SteamVR_Controller.Input((int)trackedObj.index);
-
         if (tutorialManager.tutorialState == 2 && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
             // Go to state 3 (Try to grab a pack of milk)
-            //tutorialManager.hasPressedTrigger = true;
-            tutorialManager.tutorialState = 8;
-        }
+            //hasPressedTrigger = true;
+            tutorialManager.InvokeMethod("ChangeState", 3, 3);
 
-        if (tutorialManager.tutorialState == 6 && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
-        {
-            Debug.Log(name);
-            // Check if left or right controller and act accordingly
-            if (name.Contains("left"))
-            {
-                // Stay in tutorial
-                tutorialManager.tutorialState = 0;
-            }
-            else if (name.Contains("right"))
-            {
-                // Continue to VR Room
-                SceneManager.LoadScene("VRScene");
-            }
         }
+        //if (hasPressedTrigger == true)
+        //{
+        //    waitTime -= Time.deltaTime;
+        //    if (waitTime <= 0f)
+        //    {
+        //        hasPressedTrigger = false;
+        //        tutorialManager.tutorialState = 8;
+        //    }
+        //}
+
+        //if (tutorialManager.tutorialState == 6 && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+        //{
+        //    Debug.Log(name);
+        //    // Check if left or right controller and act accordingly
+        //    if (name.Contains("left"))
+        //    {
+        //        // Stay in tutorial
+        //        tutorialManager.tutorialState = 0;
+        //    }
+        //    else if (name.Contains("right"))
+        //    {
+        //        // Continue to VR Room
+        //        SceneManager.LoadScene("VRScene");
+        //    }
+        //}
 
 
         if ((joint == null || hJoint == null || cart == null) && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
@@ -134,7 +146,6 @@ public class TutorialVRController : MonoBehaviour
         }
         else if ((joint != null) && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
-
             DetachJoint(); // -= delegate
         }
         if (hJoint != null && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
@@ -159,10 +170,11 @@ public class TutorialVRController : MonoBehaviour
             !raycastHit.collider.GetComponent<GroceryDataHandler>().inCart) //raycast hit + een ray kleiner dan #  
 
         {
-            if (tutorialManager.tutorialState == 4)
+            if (tutorialManager.tutorialState == 5)
             {
                 // Go to state 4 (Put it in your cart)
-                tutorialManager.tutorialState = 5;
+                tutorialManager.InvokeMethod("ChangeText", 1, "");
+                tutorialManager.InvokeMethod("ChangeState", 10, 6);
             }
 
             gameObject = raycastHit.collider.gameObject; //het object dat de ray raakt wordt gezet in gameObject
@@ -231,10 +243,10 @@ public class TutorialVRController : MonoBehaviour
 
         if (cart != null)
         {
-            if(tutorialManager.tutorialState == 6)
+            if(tutorialManager.tutorialState == 8)
             {
-                // Go to state 6 (Are you ready to begin?)
-                tutorialManager.tutorialState = 7;
+                tutorialManager.InvokeMethod("ChangeState", 5, 9);
+                tutorialManager.InvokeMethod("ChangeText", 0, "");
             }
 
             // Detach the cart.

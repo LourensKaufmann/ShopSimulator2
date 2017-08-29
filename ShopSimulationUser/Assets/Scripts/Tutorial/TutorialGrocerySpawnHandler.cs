@@ -30,9 +30,9 @@ public class TutorialGrocerySpawnHandler : MonoBehaviour
 
     void Update()
     {
-        if (tutorialManager.tutorialState == 4 && isSpawned == false)
+        if (tutorialManager.tutorialState == 5 && isSpawned == false)
         {
-            Invoke("Spawn", 5);
+            Invoke("Spawn", 3);
             isSpawned = true;
         }
     }
