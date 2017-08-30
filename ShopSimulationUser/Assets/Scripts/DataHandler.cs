@@ -15,10 +15,7 @@ public class DataHandler : MonoBehaviour {
 
     public void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.KeypadEnter))
-        //{
-        //    ExportData();
-        //}
+
     }
 
     public void UpdateMatrix(int x, int y, int amount)

@@ -26,15 +26,16 @@ public class SpawnController : MonoBehaviour {
             if (col.gameObject.GetComponent<FixedJoint>() == null ) {
                 for (int i = 0; i < plankTypeSelection.Count; i++)
                 {
-                    if (col.gameObject.GetComponent<GroceryDataHandler>().groceryName == plankTypeSelection[i].GetComponent<PlankSpawnController>().type)
+                    if (col.gameObject.GetComponent<GroceryDataHandler>().groceryName == plankTypeSelection[i].GetComponent<TutorialPlankSpawnController>().type)
                     {
                         // On the correct plank.
-                        Transform[] tempPlankSpawnTypeSelection = plankTypeSelection[i].GetComponentsInChildren<Transform>();
+                        Transform[] tempPlankSpawnTypeSelection = plankTypeSelection[i].transform.Find("Spawns").GetComponentsInChildren<Transform>();
                         List<Transform> plankSpawnTypeSelection = new List<Transform>();
                         for (int temp = 0; temp < tempPlankSpawnTypeSelection.Length; temp++)
                         {
                             if (tempPlankSpawnTypeSelection[temp].tag == "SnapZone")
                                 plankSpawnTypeSelection.Add(tempPlankSpawnTypeSelection[temp]);
+                            
                         }
 
                         for (int j = 0; j < plankSpawnTypeSelection.Count; j++)

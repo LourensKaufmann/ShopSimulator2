@@ -7,8 +7,8 @@ public class TutorialGroceryTypeSelector : MonoBehaviour
 {
     [HideInInspector]
     public GameObject[] typeArray = new GameObject[20];
-    [SerializeField]
-    GameObject groceryPrefab;
+
+   public GameObject groceryPrefab;
 
     private void Awake()
     {

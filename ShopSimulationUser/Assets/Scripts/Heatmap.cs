@@ -19,10 +19,7 @@ public class Heatmap : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.KeypadEnter))
-        //{
-        //    ExportHeatMapData();
-        //}
+
     }
 
     public void InputHeatMapPositions(Vector3 position, float intensity, float radius)
